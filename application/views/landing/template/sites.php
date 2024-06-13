@@ -1,4 +1,4 @@
-
+<?php $url = $this->uri->segment(1); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,9 +52,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
-                        <a href="index.html" class="nav-item nav-link active">Beranda</a>
-                        <a href="about.html" class="nav-item nav-link">Kontak Kami</a>
-                        <a href="product.html" class="nav-item nav-link">Login</a>
+                        <a href="<?= base_url(''); ?>" class="nav-item nav-link <?= ($url == '' || $url=='Beranda') ? 'active': ''; ?>">Beranda</a>
+                        <a href="<?= base_url('Kontak'); ?>" class="nav-item nav-link <?= $url=='Kontak' ? 'active': ''; ?>">Kontak Kami</a>
+                        <a href="<?= base_url('Login'); ?>" class="nav-item nav-link">Login</a>
                     </div>
                     <div class="border-start ps-4 d-none d-lg-block">
                         <button type="button" class="btn btn-sm p-0"><i class="fa fa-search"></i></button>
@@ -112,7 +112,6 @@
         </div>
     </div>
     <!-- Footer End -->
-
 
     <!-- Copyright Start -->
     <div class="container-fluid copyright py-4">
