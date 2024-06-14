@@ -1,4 +1,4 @@
-<?php $url = $this->uri->segment(1); ?>
+<?php $url = $this->uri->segment(3); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +10,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="assets/landing/img/logo.png" rel="icon">
+    <link href="<?= base_url('assets/landing')?>/img/logo.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,14 +22,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="assets/landing/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="assets/landing/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="<?= base_url('assets/landing')?>/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="<?= base_url('assets/landing')?>/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="assets/landing/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= base_url('assets/landing')?>/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="assets/landing/css/style.css" rel="stylesheet">
+    <link href="<?= base_url('assets/landing')?>/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -45,7 +45,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-2 py-lg-0">
                 <a href="index.html" class="navbar-brand">
-                    <img class="img-fluid" src="assets/landing/img/logo.png" alt="Logo">
+                    <img class="img-fluid" src="<?= base_url('assets/landing')?>/img/logo.png" alt="Logo">
                 </a>
                 <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -137,13 +137,13 @@
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/landing/lib/wow/wow.min.js"></script>
-    <script src="assets/landing/lib/easing/easing.min.js"></script>
-    <script src="assets/landing/lib/waypoints/waypoints.min.js"></script>
-    <script src="assets/landing/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="<?= base_url('assets/landing')?>/lib/wow/wow.min.js"></script>
+    <script src="<?= base_url('assets/landing')?>/lib/easing/easing.min.js"></script>
+    <script src="<?= base_url('assets/landing')?>/lib/waypoints/waypoints.min.js"></script>
+    <script src="<?= base_url('assets/landing')?>/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="assets/landing/js/main.js"></script>
+    <script src="<?= base_url('assets/landing')?>/js/main.js"></script>
 </body>
 
 </html>

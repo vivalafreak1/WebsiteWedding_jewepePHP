@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="<?= base_url('assets/admin/')?>css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url('assets/landing/')?>img/logo.png" />
+
+  <!-- include summernote css/js -->
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 </head>
 <body>
   <div class="container-scroller">
@@ -177,6 +180,13 @@
   <script src="<?= base_url('assets/admin/') ?>js/dashboard.js"></script>
   <script src="<?= base_url('assets/admin/') ?>js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  <script>
+      $('#editor').summernote({
+        height: 200
+      });
+    </script>
+
 </body>
 
 </html>
