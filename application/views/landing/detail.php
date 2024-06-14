@@ -23,6 +23,7 @@
             <div class="col-lg-7 wow fadeIn" data-wow-delay="0.5s">
                 <div class="section-title">
                     <p class="fs-5 fw-medium fst-italic text-primary">JeWePe Wedding Organizer</p>
+                    <?= $this->session->flashdata('message'); ?>
                     <h1 class="display-6"><?= $katalog->package_name;?></h1>
                 </div>
                 <?= $katalog->description; ?>
@@ -31,29 +32,30 @@
 
             <div class="col-lg-7 ms-auto wow fadeInUp" data-wow-delay="0.1s">
                 <h4 class="mb-4">Tertarik Paket Ini? Yuk langsung pesan!</h4>
-                <form>
+                <form action="<?= base_url('Beranda/pesan'); ?>" method="post">
+                    <input type="hidden" name="id" value="<?= $this->input->get('id'); ?>">
                     <div class="row g-3">
                         <div class="col-md-6">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="name" placeholder="Nama Anda">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Nama Anda" required>
                             <label for="name">Nama Anda</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <input type="email" class="form-control" id="email" placeholder="Email Anda">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email Anda" required>
                             <label for="email">Email Anda</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="email" placeholder="No. Handphone Anda">
-                            <label for="email">No. Handphone Anda</label>
+                            <input type="text" class="form-control" id="phone_number" name="phone_number"placeholder="No. Handphone Anda" required>
+                            <label for="phone_number">No. Handphone Anda</label>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-floating">
-                            <input type="date" class="form-control" id="subject" placeholder="Tanggal Pernikahan">
+                            <input type="date" class="form-control" id="subject" name="wedding_date" placeholder="Tanggal Pernikahan" required>
                             <label for="subject">Tanggal Pernikahan</label>
                         </div>
                     </div>
