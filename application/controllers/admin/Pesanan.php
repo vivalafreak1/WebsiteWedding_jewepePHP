@@ -2,38 +2,37 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pesanan extends CI_Controller {
-	
+    
     public function __construct()
     {
         parent::__construct();
-        if(empty($this->session->userdata('username'))) {
+        $username = $this->session->userdata('username');
+        if (empty($username)) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Silahkan login dahulu!</div>');
             redirect('login');
         }
         $this->load->model('pesanan_model');
     }
 
-	public function index()
-	{
+    public function index()
+    {
         $data = array(
             'title' => 'JeWePe Wedding Organizer',
             'page' => 'admin/pesanan',
             'getAllPesanan' => $this->pesanan_model->get_all_pesanan()->result(),
         );
 
-		$this->load->view('admin/template/main', $data);
-	}
+        $this->load->view('admin/template/main', $data);
+    }
 
     public function updateStatus()
     {
-        if($this->input->get()) {
-            $get = $this->input->get();
-            $cek_data = $this->pesanan_model->get_pesanan_by_id($get['id'])->num_rows();
+        $get = $this->input->get();
+        if (!empty($get)) {
+            $id = $get['id'];
+            $cek_data = $this->pesanan_model->get_pesanan_by_id($id)->num_rows();
 
-            if($cek_data > 0)
-            {
-                // var_dump($get);
-                // die;
+            if ($cek_data > 0) {
                 $datetime = date("Y-m-d H:i:s");
                 $data = array(
                     'status' => $get['status'],
@@ -41,10 +40,9 @@ class Pesanan extends CI_Controller {
                     'updated_at' => $datetime,
                 );
 
-                $update = $this->pesanan_model->update($get['id'], $data);
+                $update = $this->pesanan_model->update($id, $data);
 
-                if($update)
-                {
+                if ($update) {
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Status pesanan berhasil diperbarui!</div>');
                     redirect('admin/Pesanan');
                 } else {
@@ -56,15 +54,17 @@ class Pesanan extends CI_Controller {
             redirect('admin/Pesanan');
         }
     }
+
     public function delete()
     {
-        if(!empty($this->input->get('id', true))) {
-            $delete = $this->pesanan_model->delete_by_id($this->input->get('id', true));
+        $id = $this->input->get('id', true);
+        if (!empty($id)) {
+            $delete = $this->pesanan_model->delete_by_id($id);
 
-            if($delete) {
+            if ($delete) {
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data pesanan berhasil dihapus!</div>');
                 redirect('admin/Pesanan');
-            } else{
+            } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data pesanan gagal dihapus!</div>');
                 redirect('admin/Pesanan');
             }

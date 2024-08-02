@@ -2,19 +2,21 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller {
-	
+    
     public function __construct()
     {
         parent::__construct();
-        if(empty($this->session->userdata('username'))) {
+        $username = $this->session->userdata('username');
+        if(empty($username)) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Silahkan login dahulu!</div>');
             redirect('login');
         }
         $this->load->model('katalog_model');
         $this->load->model('pesanan_model');
     }
-	public function index()
-	{
+    
+    public function index()
+    {
         $data = array(
             'title' => 'JeWePe Wedding Organizer',
             'page' => 'admin/dashboard',
@@ -24,6 +26,6 @@ class Dashboard extends CI_Controller {
             'PesananDiterima' => $this->pesanan_model->get_count_pesanan('approved')->num_rows(),
         );
 
-		$this->load->view('admin/template/main', $data);
-	}
+        $this->load->view('admin/template/main', $data);
+    }
 }

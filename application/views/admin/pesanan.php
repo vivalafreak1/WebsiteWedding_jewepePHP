@@ -52,18 +52,21 @@
                               if($row->status == 'requested')
                               {
                                 echo '<div class="badge badge-primary">Menunggu Konfirmasi</div>';
-                              } else {
+                              } else if($row->status == 'approved') {
                                 echo '<div class="badge badge-success">Pesanan Diterima</div>';
+                              } else {
+                                echo '<div class="badge badge-danger">Pesanan Ditolak</div>';
                               }
                             ?>
                           </td>
                           <td class="text-center">
                             <?php if($row->status == 'requested') { ?>
-                              <a href="<?= base_url('admin/Pesanan/updateStatus?status=approved&id=') . $row->order_id?>" class="btn btn-sm btn-info" title="Edit">Terima</a>
-                            <?php }  else {?>
-                              <a href="<?= base_url('admin/Pesanan/updateStatus?status=requested&id=') . $row->order_id?>" class="btn-warning btn btn-sm" title=Edit>Batalkan</a>
-                              <?php } ?>
-                              <a href="<?= base_url('admin/Pesanan/delete?id=') . $row->order_id?>" title="Hapus" class="btn btn-sm btn-danger" onclick="if(!confirm('Anda yakin ingin menghapus pesanan ini?')) {return false;}">Delete</a>
+                              <a href="<?= base_url('admin/Pesanan/updateStatus?status=approved&id=') . $row->order_id?>" class="btn btn-sm btn-info" title="Terima">Terima</a>
+                              <a href="<?= base_url('admin/Pesanan/updateStatus?status=rejected&id=') . $row->order_id?>" class="btn btn-sm btn-danger" title="Tolak">Tolak</a>
+                            <?php } else if($row->status == 'approved') { ?>
+                              <a href="<?= base_url('admin/Pesanan/updateStatus?status=requested&id=') . $row->order_id?>" class="btn-warning btn btn-sm" title="Batalkan">Batalkan</a>
+                            <?php } ?>
+                            <a href="<?= base_url('admin/Pesanan/delete?id=') . $row->order_id?>" title="Hapus" class="btn btn-sm btn-danger" onclick="if(!confirm('Anda yakin ingin menghapus pesanan ini?')) {return false;}">Delete</a>
                           </td>
                         </tr>
                         <?php endforeach; ?>

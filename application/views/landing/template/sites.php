@@ -54,6 +54,7 @@
                     <div class="navbar-nav ms-auto">
                         <a href="<?= base_url(''); ?>" class="nav-item nav-link <?= ($url == '' || $url=='Beranda') ? 'active': ''; ?>">Beranda</a>
                         <a href="<?= base_url('Kontak'); ?>" class="nav-item nav-link <?= $url=='Kontak' ? 'active': ''; ?>">Kontak Kami</a>
+                        <a href="<?= base_url('Customer'); ?>" class="nav-item nav-link">Cek pesanan</a>
                         <a href="<?= base_url('Login'); ?>" class="nav-item nav-link">Login</a>
                     </div>
                     <div class="border-start ps-4 d-none d-lg-block">
@@ -68,7 +69,7 @@
     <?php $this->load->view($page); ?>
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <!-- <div class="container-fluid bg-dark footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -111,6 +112,7 @@
             </div>
         </div>
     </div>
+-->
     <!-- Footer End -->
 
     <!-- Copyright Start -->
@@ -118,11 +120,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="fw-medium" href="#">Your Site Name</a>, All Right Reserved.
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                    Designed By <a class="fw-medium" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="fw-medium" href="https://themewagon.com">ThemeWagon</a>
+                    &copy; <a class="fw-medium" href="#">JeWePe</a>, All Right Reserved.
                 </div>
             </div>
         </div>

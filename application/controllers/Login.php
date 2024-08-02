@@ -12,7 +12,7 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-		// $passDefault = password_hash('admin123', PASSWORD_DEFAULT);
+		// $passDefault = password_hash('jewepe123', PASSWORD_DEFAULT);
 		// var_dump($passDefault);
 		// die;
 		

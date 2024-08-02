@@ -55,10 +55,6 @@ class Beranda extends CI_Controller {
 
             if($cek_data == 0)
             {
-
-                // var_dump($post);
-                // die;
-
                 $datetime = date("Y-m-d H:i:s");
 
                 $data = array(
@@ -90,3 +86,4 @@ class Beranda extends CI_Controller {
         }
     }
 }
+?>

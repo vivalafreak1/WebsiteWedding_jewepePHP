@@ -3,45 +3,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Katalog extends CI_Controller {
 
-	public function __construct()
+    public function __construct()
     {
         parent::__construct();
-        if(empty($this->session->userdata('username'))) {
+        $username = $this->session->userdata('username');
+        if (empty($username)) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Silahkan login dahulu!</div>');
             redirect('login');
         }
         $this->load->model('katalog_model');
     }
-	public function index()
-	{
+
+    public function index()
+    {
         $data = array(
             'title' => 'JeWePe Wedding Organizer',
             'page' => 'admin/katalog',
             'getAllKatalog' => $this->katalog_model->get_all_katalog()->result()
         );
 
-		$this->load->view('admin/template/main', $data);
-	}
+        $this->load->view('admin/template/main', $data);
+    }
 
     public function add()
-	{
+    {
         $data = array(
             'title' => 'JeWePe Wedding Organizer',
             'page' => 'admin/add_katalog',
         );
 
-		$this->load->view('admin/template/main', $data);
-	}
+        $this->load->view('admin/template/main', $data);
+    }
 
     public function edit()
     {
-        if($this->input->get('id')) {
-            $cek_data = $this->katalog_model->get_katalog_by_id($this->input->get('id'))->num_rows();
-            if($cek_data > 0) {
+        $id = $this->input->get('id');
+        if ($id) {
+            $cek_data = $this->katalog_model->get_katalog_by_id($id)->num_rows();
+            if ($cek_data > 0) {
                 $data = array(
                     'title' => 'JeWePe weddings Organizer',
                     'page' => 'admin/edit_katalog',
-                    'katalog' => $this->katalog_model->get_katalog_by_id($this->input->get('id'))->row()
+                    'katalog' => $this->katalog_model->get_katalog_by_id($id)->row()
                 );
 
                 $this->load->view('admin/template/main', $data);
@@ -54,17 +57,13 @@ class Katalog extends CI_Controller {
         }
     }
 
-
     public function addData()
     {
-        if($this->input->post())
-        {
+        if ($this->input->post()) {
             $post = $this->input->post();
 
-            //var_dump($post);
-            // die;
             $datetime = date('Y-m-d H:i:s');
-            $fileName = date('YmD') . '_' .rand();
+            $fileName = date('YmD') . '_' . rand();
 
             $data = array(
                 'package_name' => $post['package_name'],
@@ -77,7 +76,7 @@ class Katalog extends CI_Controller {
 
             if (!empty($_FILES['image']['name'])) {
                 //delete file 
-                if(file_exists('./assets/files/katalog/' . $_FILES['image']['name']) && $_FILES['image']['name']) {
+                if (file_exists('./assets/files/katalog/' . $_FILES['image']['name']) && $_FILES['image']['name']) {
                     unlink('./assets/files/katalog/' . $_FILES['image']['name']);
                 }
 
@@ -86,7 +85,7 @@ class Katalog extends CI_Controller {
             }
 
             $insert = $this->katalog_model->insert($data);
-            if($insert) {
+            if ($insert) {
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data katalog berhasil ditambahkan!</div>');
                 redirect('admin/Katalog');
             } else {
@@ -98,18 +97,17 @@ class Katalog extends CI_Controller {
         }
     }
 
-    public function updateData() 
+    public function updateData()
     {
         $post = $this->input->post();
 
         $cek_data = $this->katalog_model->get_katalog_by_id($post['id'])->num_rows();
 
-        if($cek_data > 0) {
+        if ($cek_data > 0) {
             $getKatalog = $this->katalog_model->get_katalog_by_id($post['id'])->row();
-            // var_dump($post);
-            // die;
+
             $datetime = date("Y-m-d H:i:s");
-            $fileName = date('YmD') . '_' .rand();
+            $fileName = date('YmD') . '_' . rand();
             $data = array(
                 'package_name' => $post['package_name'],
                 'description' => $post['description'],
@@ -121,7 +119,7 @@ class Katalog extends CI_Controller {
 
             if (!empty($_FILES['image']['name'])) {
                 // delete file
-                if(file_exists('./assets/files/katalog/' . $getKatalog->image) && $getKatalog->image) {
+                if (file_exists('./assets/files/katalog/' . $getKatalog->image) && $getKatalog->image) {
                     unlink('./assets/files/katalog/' . $getKatalog->image);
                 }
 
@@ -145,13 +143,14 @@ class Katalog extends CI_Controller {
 
     public function delete()
     {
-        if(!empty($this->input->get('id', true))) {
-            $Katalog = $this->katalog_model->get_katalog_by_id($this->input->get('id', true))->row();
+        $id = $this->input->get('id', true);
+        if (!empty($id)) {
+            $Katalog = $this->katalog_model->get_katalog_by_id($id)->row();
             if (file_exists('./assets/files/katalog/' . $Katalog->image) && $Katalog->image) {
                 unlink('./assets/files/katalog/' . $Katalog->image);
             }
 
-            $delete = $this->katalog_model->delete_by_id($this->input->get('id', true));
+            $delete = $this->katalog_model->delete_by_id($id);
             if ($delete) {
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data katalog berhasil dihapus!</div>');
                 redirect('admin/Katalog');
@@ -159,11 +158,10 @@ class Katalog extends CI_Controller {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data katalog gagal dihapus!</div>');
                 redirect('admin/Katalog');
             }
-        }else {
+        } else {
             redirect('admin/Katalog');
         }
     }
-
 
     private function _do_upload($fileName)
     {
